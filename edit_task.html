@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Task</h2>
+        <form action="php/edit_task.php" method="POST" id="editTaskForm">
+            <input type="hidden" name="id" id="taskId">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="due_date">Due Date:</label>
+                <input type="date" class="form-control" id="due_date" name="due_date" required>
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority:</label>
+                <select class="form-control" id="priority" name="priority" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="pending">Pending</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Task</button>
+        </form>
+    </div>
+    <script>
+        // Populate form with existing task data (this script assumes the data is passed to the page)
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('taskId').value = params.get('id');
+            document.getElementById('title').value = params.get('title');
+            document.getElementById('description').value = params.get('description');
+            document.getElementById('due_date').value = params.get('due_date');
+            document.getElementById('priority').value = params.get('priority');
+            document.getElementById('status').value = params.get('status');
+        }
+    </script>
+</body>
+</html>
